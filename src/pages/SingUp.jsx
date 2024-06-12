@@ -9,9 +9,21 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const handleSignUp = () => {
-    console.log("id:", id);
-    console.log("password:", password);
-    console.log("nickname:", nickname);
+    if (id.length < 4 || id.length > 10) {
+      alert("아이디는 4글자~10글자만 가능합니다.");
+      return;
+    }
+    if (password.length < 4 || password.length > 15) {
+      alert("비밀번호는 4글자~10글자만 가능합니다.");
+      return;
+    }
+    if (nickname.length < 1 || nickname.length > 10) {
+      alert("닉네임은 1글자~10글자만 가능합니다.");
+      return;
+    }
+
+    // API 호출 코드
+    console.log("회원가입 완료");
   };
 
   return (
