@@ -6,11 +6,31 @@ import store from "./redux/store";
 import "./App.css";
 import SingIn from "./pages/SingIn";
 import SignUp from "./pages/SingUp";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getUserInfo } from "./lib/api/auth";
 
 function App() {
   const [user, setUser] = useState(null);
-  console.log("user : ", user);
+
+  //새로고침 해도 로그인 상태 유지
+  useEffect(() => {
+    getUserInfo().then((res) => {
+      if (res) {
+        try {
+          setUser({
+            userId: res.id,
+            nickname: res.nickname,
+            avatar: res.avatar,
+          });
+        } catch (error) {
+          console.log(error?.response?.data?.message);
+          alert(error?.response?.data?.message);
+        }
+      }
+    });
+  }, []);
+
+  console.log("회원 정보 확인 : ", user);
 
   return (
     <>
