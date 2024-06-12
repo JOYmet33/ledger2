@@ -20,6 +20,7 @@ export default function SignIn() {
           <label htmlFor="id">아이디</label>
           <input
             type="text"
+            value={id}
             placeholder="아이디"
             onChange={(e) => setId(e.target.value)}
           />
@@ -28,6 +29,7 @@ export default function SignIn() {
           <label htmlFor="password">비밀번호</label>
           <input
             type="password"
+            value={password}
             placeholder="비밀번호"
             onChange={(e) => setPassword(e.target.value)}
           />
