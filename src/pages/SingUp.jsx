@@ -1,4 +1,3 @@
-import axios from "axios";
 import { Container } from "./Home";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +10,7 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
+    // 회원가입 유효성 검사
     if (id.length < 4 || id.length > 10) {
       alert("아이디는 4글자~10글자만 가능합니다.");
       return;
@@ -23,14 +23,16 @@ export default function SignUp() {
       alert("닉네임은 1글자~10글자만 가능합니다.");
       return;
     }
-
     // API 호출 코드
     const response = await register({
       id: id,
       password: password,
       nickname: nickname,
     });
-    console.log("회원가입 API 응답값 :", response);
+    if (response) {
+      confirm("회원가입이 완료되었습니다.");
+      navigate("/sign_in");
+    }
   };
 
   return (

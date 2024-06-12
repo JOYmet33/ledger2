@@ -2,15 +2,21 @@
 import { Container } from "./Home";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { logIn } from "../lib/api/auth";
 
-export default function SignIn() {
+export default function SignIn({ setUser }) {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleSignIn = () => {
-    console.log("id:", id);
-    console.log("password:", password);
+  const handleSignIn = async () => {
+    // response(응답값) 구조분해할당 : userId, nickname, avatar
+    const { userId, nickname, avatar } = await logIn({
+      id: id,
+      password: password,
+    });
+
+    setUser({ userId, nickname, avatar });
   };
 
   return (
