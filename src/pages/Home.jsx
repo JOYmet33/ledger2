@@ -5,7 +5,7 @@ import ExpenseList from "../components/ExpenseList";
 import CreateExpense from "../components/CreateExpense";
 import { useSelector } from "react-redux";
 
-const Container = styled.main`
+export const Container = styled.main`
   max-width: 800px;
   width: 100%;
   display: flex;
