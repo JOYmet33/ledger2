@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { editExpense, deleteExpense } from "../redux/slices/expensesSlice";
+import { useQuery } from "@tanstack/react-query";
+import { getExpense } from "../lib/api/expense";
 
 const Container = styled.div`
   max-width: 800px;
@@ -63,14 +65,29 @@ export default function Detail() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { id } = useParams();
-  const expenses = useSelector((state) => state.expenses);
 
-  const selectedExpense = expenses.find((element) => element.id === id);
+  const {
+    data: selectedExpense = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["expenses", id],
+    queryFn: getExpense,
+  });
 
   const [date, setDate] = useState(selectedExpense.date);
   const [item, setItem] = useState(selectedExpense.item);
   const [amount, setAmount] = useState(selectedExpense.amount);
   const [description, setDescription] = useState(selectedExpense.description);
+
+  useEffect(() => {
+    if (selectedExpense) {
+      setDate(selectedExpense.date);
+      setItem(selectedExpense.item);
+      setAmount(selectedExpense.amount);
+      setDescription(selectedExpense.description);
+    }
+  }, [selectedExpense]);
 
   const handleEdit = () => {
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;

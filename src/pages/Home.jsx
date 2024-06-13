@@ -20,7 +20,7 @@ export const Section = styled.section`
   padding: 20px;
 `;
 
-export default function Home() {
+export default function Home({ user }) {
   const [month, setMonth] = useState(1);
   const expenses = useSelector((state) => state.expenses);
 
@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <Container>
       <MonthNavigation month={month} setMonth={setMonth} />
-      <CreateExpense month={month} />
+      <CreateExpense month={month} user={user} />
       <ExpenseList expenses={filteredExpenses} />
     </Container>
   );
