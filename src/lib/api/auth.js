@@ -51,3 +51,22 @@ export const getUserInfo = async () => {
     }
   }
 };
+
+// 프로필 수정 - 역할: 닉네임 수정, 아바타 수정
+export const updateProfile = async (formData) => {
+  const accessToken = localStorage.getItem("accessToken");
+  if (accessToken) {
+    try {
+      const response = await axios.patch(`${AUTH_API_HOST}/profile`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      alert("accessToken 이 만료되었습니다");
+      localStorage.clear();
+    }
+  }
+};

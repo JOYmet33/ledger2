@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import { updateProfile } from "../lib/api/auth";
 
 const Container = styled.div`
   max-width: 400px;
@@ -35,7 +36,39 @@ const Button = styled.button`
 `;
 
 export default function Profile() {
-  const [] = useState();
+  const [nickname, setNickname] = useState("");
+  const [avatar, setAvatar] = useState(null);
 
-  useEffect(() => {});
+  const handleUpdateProfile = async () => {
+    const formData = new FormData();
+    formData.append("nickname", nickname);
+    formData.append("avatar", avatar);
+    await updateProfile(formData);
+  };
+  ``;
+
+  return (
+    <Container>
+      <h2>프로필 수정</h2>
+      <InputGroup>
+        <label htmlFor="nickname">닉네임</label>
+        <input
+          type="text"
+          placeholder="닉네임"
+          minLength="1"
+          maxLength="10"
+          onChange={(e) => setNickname(e.target.value)}
+        />
+      </InputGroup>
+      <InputGroup>
+        <label htmlFor="avatar">아바타</label>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setAvatar(e.target.files[0])}
+        />
+      </InputGroup>
+      <Button onClick={handleUpdateProfile}>프로필 업데이트</Button>
+    </Container>
+  );
 }
