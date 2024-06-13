@@ -39,11 +39,20 @@ export default function Profile() {
   const [nickname, setNickname] = useState("");
   const [avatar, setAvatar] = useState(null);
 
-  const handleUpdateProfile = async () => {
+  const handleUpdateProfile = async ({ user, setUser }) => {
     const formData = new FormData();
     formData.append("nickname", nickname);
     formData.append("avatar", avatar);
-    await updateProfile(formData);
+    const response = await updateProfile(formData);
+
+    if (response.success) {
+      setUser({
+        ...user,
+        nickname: response.nickname,
+        avatar: response.avatar,
+      });
+      navigate("/");
+    }
   };
   ``;
 
