@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { updateProfile } from "../lib/api/auth";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   max-width: 400px;
@@ -38,6 +39,7 @@ const Button = styled.button`
 export default function Profile() {
   const [nickname, setNickname] = useState("");
   const [avatar, setAvatar] = useState(null);
+  const navigate = useNavigate();
 
   const handleUpdateProfile = async ({ user, setUser }) => {
     const formData = new FormData();
