@@ -23,7 +23,7 @@ export const getExpense = async ({ queryKey }) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    alert("데이터 조회 중 오류가 발생했습니다..");
+    alert("🚨데이터 조회 중 오류가 발생했습니다..");
   }
 };
 
@@ -36,6 +36,6 @@ export const postExpense = async (newExpense) => {
     return response.data;
   } catch (error) {
     console.log(error);
-    alert("데이터가 들어가지 않았어요..");
+    alert("🚨데이터가 들어가지 않았어요..");
   }
 };
