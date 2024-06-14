@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const JSON_SERVER_HOST = "https://github.com/JOYmet33/ledger2_json_server.git";
+const JSON_SERVER_HOST = "https://fancy-abrupt-clavicle.glitch.me";
 
 // expense 전부 가져오기
 export const getExpenses = async () => {
