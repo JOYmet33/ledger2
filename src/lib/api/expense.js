@@ -1,9 +1,10 @@
 import axios from "axios";
 
-const JSON_SERVER_HOST = "http://localhost:5000";
+const JSON_SERVER_HOST = "https://github.com/JOYmet33/ledger2_json_server.git";
 
 // expense 전부 가져오기
 export const getExpenses = async () => {
+  ``;
   try {
     const response = await axios.get(`${JSON_SERVER_HOST}/expenses`);
     return response.data;
