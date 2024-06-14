@@ -15,6 +15,7 @@ const Navbar = styled.nav`
   top: 0;
   z-index: 1000;
   max-width: 1240px;
+  max-height: 100px;
 `;
 
 const NavItem = styled(Link)`
@@ -71,11 +72,7 @@ export default function Layout({ user, setUser }) {
         <div className="UserProfile">
           {user && (
             <>
-              <image
-                className="UserAvatar"
-                src={user.avetar}
-                alt="User Avatar"
-              />
+              <img className="UserAvatar" src={user.avatar} alt="User Avatar" />
               <h4 className="UserName">{user.nickname}</h4>
               <br />
               <button onClick={handleLogout}>로그아웃</button>

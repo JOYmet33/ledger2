@@ -78,6 +78,15 @@
       "amount": 10,
       "description": "휴가",
       "createdBy": "joymet"
+    },
+    {
+      "id": "10f26bde-ffbd-4b41-b36e-1b0125d4f7ac",
+      "month": 1,
+      "date": "2024-01-01",
+      "item": "도서",
+      "amount": 1000,
+      "description": "qwe",
+      "createdBy": "joymet"
     }
   ]
 }

@@ -36,17 +36,16 @@ const Button = styled.button`
   margin-bottom: 10px;
 `;
 
-export default function Profile() {
+export default function Profile({ user, setUser }) {
   const [nickname, setNickname] = useState("");
   const [avatar, setAvatar] = useState(null);
   const navigate = useNavigate();
 
-  const handleUpdateProfile = async ({ user, setUser }) => {
+  const handleUpdateProfile = async () => {
     const formData = new FormData();
     formData.append("nickname", nickname);
     formData.append("avatar", avatar);
     const response = await updateProfile(formData);
-
     if (response.success) {
       setUser({
         ...user,
@@ -56,7 +55,6 @@ export default function Profile() {
       navigate("/");
     }
   };
-  ``;
 
   return (
     <Container>
